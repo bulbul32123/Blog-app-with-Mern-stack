@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="container mt-5">
+      <form
+        action="/profile/updated"
+        method="post"
+        enctype="multipart/form-data"
+        class="row"
+      >
+        <div class="col-md-4">
+          <!-- Profile Image -->
+          <div class="card">
+            <div class="card-body text-center">
+              <img
+                src="<%= user.profileImageURL %>"
+                class="rounded-circle mb-3"
+                height="180px"
+                alt="Profile Image"
+              />
+              <div class="dropdown">
+                <input
+                  type="file"
+                  class="form-control"
+                  id="profilePic"
+                  aria-describedby="profilePic"
+                  name="profilePic"
+                />
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#">Upload New</a></li>
+                  <li><a class="dropdown-item" href="#">Remove Picture</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <!-- User Info -->
+          <div class="card">
+            <div class="card-body">
+              <!-- Username -->
+              <div
+                class="mb-3 d-flex justify-content-between align-items-center"
+              >
+                <div class="w-75">
+                  <label for="username" class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control-plaintext"
+                    name="fullName"
+                    value="<%= user.fullName %>"
+                  />
+                </div>
+                <div>
+                  <span>Change</span>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div
+                class="mb-3 d-flex justify-content-between align-items-center"
+              >
+                <div class="w-75">
+                  <label for="user-email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control-plaintext"
+                    readonly
+                    value="<%= user.email %>"
+                    name="email"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary mt-3">Submit</button>
+        </div>
+      </form>
+    </div>
+    <%- include('./partials/scripts.ejs') %>
+  </body>
+</html>
